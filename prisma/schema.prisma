@@ -1,0 +1,177 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum EventType {
+  FESTIVAL
+  CONCERT
+  CABARET
+  SPECTACLE
+  CYCLIC_MEETING
+  WORKSHOP
+  LECTURE
+  OTHERS
+}
+
+enum UserRole {
+  ADMIN
+  EDITOR
+}
+
+enum ActivityType {
+  DANCE
+  PLASTICITY
+  MULTIMEDIA
+  THEATER
+  MUSIC
+  EDUCATION
+  RECREATION
+  OTHERS
+}
+
+enum ForWhom {
+  CHILDREN
+  TEENS
+  ADULTS
+  SENIORS
+  WOMEN
+}
+
+enum Day {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+  SUNDAY
+}
+
+enum Place {
+  DANCING_ROOM
+  ART_ROOM
+  CONCERT_HALL
+}
+
+model User{
+  id String @id @default(uuid())
+  name String
+  email String @unique
+  hashedPassword String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  role UserRole @default(EDITOR)
+  events Event[]
+  activities CyclicalActivity[]
+  // sliders Slide[]
+}
+
+model Image {
+  id String @id @default(uuid())
+  url String
+  alt String
+  additionInfoThatMustBeDisplayed String?
+  event Event @relation(fields: [eventId], references: [id])
+  eventId String
+}
+
+model Event{
+  id String @id @default(uuid())
+  eventTypes EventType[]
+  eventForWhom ForWhom[]
+  title String
+  places Place[]
+  shortDescription String
+  eventStartDate DateTime
+  eventEndDate DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  author User @relation(fields: [authorId], references: [id])
+  authorId String
+
+  //details
+  images Image[]
+  detailedDescription String
+
+  //paying
+  isPayed Boolean
+  kindOfEnterInfo String
+  ticketBuyingUrl String?
+
+  //news
+  isToBeInNewsSection Boolean
+  isToBeOnlyInNewsSection_NotSeenInEvents Boolean
+  isDateToBeHiddenInNewsSection Boolean
+  newsSectionImageUrl String?
+  newsSectionImageAlt String?
+
+  //slider
+  isToBeInSlider Boolean
+  sliderImageUrl String?
+  sliderImageAlt String?
+  visibleInSliderFrom DateTime?
+  visibleInSLiderTo DateTime?
+
+  //publishing
+  isToBePublished Boolean
+  visibleFrom DateTime
+  visibleTo DateTime
+}
+
+// model Slide{
+//   id String @id @default(uuid())
+//   slideTitle String
+//   slideUrl String
+//   slideAlt String
+//   eventType EventsType[]
+//   eventDate DateTime
+//   visibleFrom DateTime
+//   visibleUntil DateTime
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   author User @relation(fields: [authorId], references: [id])
+//   authorId String
+// }
+
+
+
+model CyclicalActivityOccurrence {
+  id String @id @default(uuid())
+  day Day
+  activityStart DateTime
+  activityEnd DateTime
+  cyclicalActivity CyclicalActivity @relation(fields: [cyclicalActivityId], references: [id])
+  cyclicalActivityId String
+
+}
+model CyclicalActivity{
+  id String @id @default(uuid())
+  name String
+  activityTypes ActivityType[]
+  activitiesForWhom ForWhom[]
+  shortDescription String
+  occurance CyclicalActivityOccurrence[]
+  places Place[]
+  customLinkToDetails String?
+  expiresAt DateTime?
+  isToBePublished Boolean
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  author User @relation(fields: [authorId], references: [id])
+  authorId String
+}
+
+model Newsletter {
+  email String @id @unique
+}
+
+
+
