@@ -1,4 +1,3 @@
-import FooterMain from '@/app/(site)/components/footer/FooterMain';
 import SliderGroups from '@/app/(site)/components/slider_groups/SliderGroups';
 import {
   createBetweenHoursText,
@@ -69,7 +68,6 @@ export default function CyclicActivitiesDynamicInside(props: Props) {
           </div>
         </div>
       </div>
-      <FooterMain />
     </Fragment>
   );
 }

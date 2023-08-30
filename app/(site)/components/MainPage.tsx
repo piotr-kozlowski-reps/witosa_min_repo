@@ -1,9 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import FooterMain from './footer/FooterMain';
-import NewsMain from './news/NewsMain';
 import MainSlider from './slider_main/MainSlider';
+import NewsMain from './news/NewsMain';
 
 export default function MainPage() {
   ////tsx
@@ -19,7 +18,6 @@ export default function MainPage() {
       {/* <TestServerSession />
       <TestClientSession /> */}
       {/* </div> */}
-      <FooterMain />
     </motion.div>
   );
 }

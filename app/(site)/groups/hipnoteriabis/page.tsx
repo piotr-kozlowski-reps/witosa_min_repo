@@ -1,7 +1,6 @@
 import { getGroupsSliderData } from '@/lib/api/sliderUtils';
 import { TSliderGroupImage } from '@/types';
 import { Metadata } from 'next';
-import FooterMain from '../../components/footer/FooterMain';
 import SliderGroups from '../../components/slider_groups/SliderGroups';
 import HipnoteriaBisContent from './components/HipnoteriaBisContent';
 
@@ -20,7 +19,6 @@ export default async function HipnoteriaBisPage() {
     <main>
       <SliderGroups sliderImages={sliderImages} />
       <HipnoteriaBisContent />
-      <FooterMain />
     </main>
   );
 }

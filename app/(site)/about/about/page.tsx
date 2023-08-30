@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import { Fragment } from 'react';
-import FooterMain from '../../components/footer/FooterMain';
 import AboutContent from './components/AboutContent';
 
 export const metadata: Metadata = {
@@ -12,7 +11,6 @@ export default function AboutPage() {
   return (
     <Fragment>
       <AboutContent />
-      <FooterMain />
     </Fragment>
   );
 }
