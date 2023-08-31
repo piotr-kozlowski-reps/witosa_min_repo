@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import MainSlider from './slider_main/MainSlider';
-import NewsMain from './news/NewsMain';
 
 export default function MainPage() {
   ////tsx
@@ -13,11 +12,6 @@ export default function MainPage() {
       exit={{ opacity: 0, y: 15 }}
     >
       <MainSlider />
-      <NewsMain />
-      {/* <Test /> */}
-      {/* <TestServerSession />
-      <TestClientSession /> */}
-      {/* </div> */}
     </motion.div>
   );
 }

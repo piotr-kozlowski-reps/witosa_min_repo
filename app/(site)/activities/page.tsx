@@ -1,7 +1,6 @@
 import { getCyclicalActivities } from '@/lib/api/cyclicalActivitiesUtils';
 import { CyclicalActivityTemporary } from '@/types';
 import { Metadata } from 'next';
-import CyclicalActivitiesContent from './components/CyclicalActivitiesContent';
 
 export const metadata: Metadata = {
   title: 'Zajęcia stałe | Art CK',
@@ -15,7 +14,7 @@ export default async function ActivitiesPage() {
   ////tsx
   return (
     <section>
-      <CyclicalActivitiesContent cyclicalActivities={cyclicalActivities} />
+      <div>activities</div>
     </section>
   );
 }

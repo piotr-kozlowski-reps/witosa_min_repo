@@ -3,9 +3,10 @@ import { TSlide } from '@/types';
 import SliderView from './SliderView';
 
 export default async function MainSlider() {
-  ////vars
+  //vars
   const sliderData: TSlide[] = await getEventsMappedToMainSliderData();
 
   ////tsx
   return <SliderView sliderData={sliderData} />;
+  // return <div>Main Slider</div>;
 }
